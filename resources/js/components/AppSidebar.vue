@@ -29,6 +29,11 @@ const mainNavItems: NavItem[] = [
         href: '/products',
         icon: Folder,
     },
+    {
+        title: 'Settings',
+        href: '/settingss',
+        icon: Folder,
+    },
 ];
 
 // const footerNavItems: NavItem[] = [
