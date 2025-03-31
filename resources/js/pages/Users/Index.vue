@@ -37,19 +37,7 @@ const breadcrumbs: BreadcrumbItem[] = [
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in users" :key="user.id">
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.lastname }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.phone }}</td>
-            <td>{{ user.telegram }}</td>
-            <td>
-              <Link href="#" class="text-blue-500 hover:underline">Editar</Link>
-              <Link href="#" class="text-red-500 hover:underline">Eliminar</Link>
-            </td>
-          </tr>
+
         </tbody>
       </table>
   </AppLayout>
