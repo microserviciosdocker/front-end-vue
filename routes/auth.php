@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 Route::middleware('guest')->group(function () {
@@ -59,6 +60,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
+    
+});
+
+Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });

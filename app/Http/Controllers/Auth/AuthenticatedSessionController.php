@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -41,8 +42,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Http::baseUrl(env('AUTH_HOST'))
+            ->withToken(session('access_token'))    
+            ->post(env('AUTH_ENDPOINT').'logout');
 
+        session()->forget('access_token', 'user');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
